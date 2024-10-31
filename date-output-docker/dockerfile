@@ -1,0 +1,17 @@
+# Use Debian as the base image
+FROM debian:latest
+
+# Install Bash (included in the Debian base image) and other necessary packages
+RUN apt-get update && \
+    apt-get install -y bash && \
+    apt-get clean
+
+# Copy the bash script into the container
+COPY date_script.sh /usr/local/bin/date_script.sh
+
+# Make sure the script is executable
+RUN chmod +x /usr/local/bin/date_script.sh
+
+# Set the script to run as the default command
+CMD ["/usr/local/bin/date_script.sh"]
+
